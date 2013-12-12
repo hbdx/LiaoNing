@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="SGWService"
+	targetNamespace="http://www.chinatelecom.cn/SGW/SOAP" xmlns:ns1="http://schemas.xmlsoap.org/wsdl/soap/http"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.chinatelecom.cn/SGW/SOAP"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.chinatelecom.cn/SGW/SOAP"
+			version="1.0" xmlns:tns="http://www.chinatelecom.cn/SGW/SOAP"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="SgwAck" nillable="true" type="tns:SgwAck" />
+			<xs:element name="SgwQueryAck" nillable="true" type="tns:SgwQueryAck" />
+			<xs:element name="SgwQueryReq" nillable="true" type="tns:SgwQueryReq" />
+			<xs:element name="SgwReq" nillable="true" type="tns:SgwReq" />
+			<xs:complexType name="SgwQueryReq">
+				<xs:sequence>
+					<xs:element name="MID" type="xs:string" />
+					<xs:element name="SCID" type="xs:string" />
+					<xs:element name="UID" type="xs:string" />
+					<xs:element name="PWD" type="xs:string" />
+					<xs:element minOccurs="0" name="REPTAG" type="xs:int" />
+					<xs:element minOccurs="0" name="SIG" type="xs:string" />
+					<xs:element minOccurs="0" name="RSV1" type="xs:string" />
+					<xs:element minOccurs="0" name="RSV2" type="xs:string" />
+					<xs:element name="DATA" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="SgwQueryAck">
+				<xs:sequence>
+					<xs:element name="MID" type="xs:string" />
+					<xs:element minOccurs="0" name="SIG" type="xs:string" />
+					<xs:element minOccurs="0" name="REPTAG" type="xs:int" />
+					<xs:element name="RTT" type="xs:string" />
+					<xs:element name="RC" type="xs:string" />
+					<xs:element minOccurs="0" name="DS" nillable="true"
+						type="xs:string" />
+					<xs:element name="DATA" nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="SgwReq">
+				<xs:sequence>
+					<xs:element name="MessageID" type="xs:string" />
+					<xs:element name="CommandCode" type="xs:string" />
+					<xs:element name="UserName" type="xs:string" />
+					<xs:element name="PassWord" type="xs:string" />
+					<xs:element name="RetransmitMmessage" type="xs:string" />
+					<xs:element name="ServiceContextID" type="xs:string" />
+					<xs:element maxOccurs="unbounded" name="DataInfomation"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="SgwAck">
+				<xs:sequence>
+					<xs:element name="MessageID" type="xs:string" />
+					<xs:element name="CommandCode" type="xs:string" />
+					<xs:element name="ResponseCode" type="xs:string" />
+					<xs:element minOccurs="0" name="ErrorMessage" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="SgwQueryRequest">
+		<wsdl:part element="tns:SgwQueryReq" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="SgwQueryRequestResponse">
+		<wsdl:part element="tns:SgwQueryAck" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="SgwRequestResponse">
+		<wsdl:part element="tns:SgwAck" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="SgwRequest">
+		<wsdl:part element="tns:SgwReq" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="SGWService">
+		<wsdl:operation name="SgwQueryRequest">
+			<wsdl:input message="tns:SgwQueryRequest" name="SgwQueryRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:SgwQueryRequestResponse" name="SgwQueryRequestResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SgwRequest">
+			<wsdl:input message="tns:SgwRequest" name="SgwRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:SgwRequestResponse" name="SgwRequestResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SGWServiceServiceSoapBinding" type="tns:SGWService">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="SgwQueryRequest">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="SgwQueryRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="SgwQueryRequestResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SgwRequest">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="SgwRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="SgwRequestResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SGWService">
+		<wsdl:port binding="tns:SGWServiceServiceSoapBinding" name="SGWServiceSOAP">
+			<soap:address location="http://132.129.24.17:8088/ws/SGWService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,980 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="urn:BillService" xmlns:intf="urn:BillService" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://data.common.feemgt.webservice.crm.neusoft.com" xmlns:tns2="http://monthFeeQuery.data.feemgt.crm.neusoft.com" xmlns:tns3="http://data.common.tdframework.neusoft.com" xmlns:tns4="http://detailquery.data.feemgt.crm.neusoft.com" xmlns:tns5="http://payfee.data.feemgt.crm.neusoft.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:BillService">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://data.common.feemgt.webservice.crm.neusoft.com">
+   <import namespace="http://detailquery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://data.common.tdframework.neusoft.com"/>
+   <import namespace="http://monthFeeQuery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://payfee.data.feemgt.crm.neusoft.com"/>
+   <import namespace="urn:BillService"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="DetailBillListVO">
+    <sequence>
+     <element name="beginDate" nillable="true" type="xsd:string"/>
+     <element name="detailType" type="xsd:int"/>
+     <element name="endDate" nillable="true" type="xsd:string"/>
+     <element name="feeDate" nillable="true" type="xsd:string"/>
+     <element name="queryKind" type="xsd:int"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="customerId" type="xsd:long"/>
+     <element name="accountId" type="xsd:long"/>
+     <element name="callType" nillable="true" type="soapenc:string"/>
+     <element name="flowNumber" nillable="true" type="soapenc:string"/>
+     <element name="queryMonthCount" type="xsd:int"/>
+     <element name="smsKind" nillable="true" type="soapenc:string"/>
+     <element name="tollType" nillable="true" type="soapenc:string"/>
+     <element name="userId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="AccountDetailInfoVO">
+    <sequence>
+     <element name="accountId" type="xsd:long"/>
+     <element name="cityCode" nillable="true" type="xsd:string"/>
+     <element name="feeName" nillable="true" type="xsd:string"/>
+     <element name="feeValue" nillable="true" type="xsd:string"/>
+     <element name="useId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="LeftFeeVO">
+    <sequence>
+     <element name="balanceFee" type="xsd:float"/>
+     <element name="billFee" type="xsd:float"/>
+     <element name="billMax" nillable="true" type="xsd:string"/>
+     <element name="billMin" nillable="true" type="xsd:string"/>
+     <element name="creditFee" type="xsd:float"/>
+     <element name="currNoFavour" type="xsd:float"/>
+     <element name="currTotalFee" type="xsd:float"/>
+     <element name="leftFee" type="xsd:float"/>
+     <element name="overdue" type="xsd:float"/>
+     <element name="preNum" type="xsd:float"/>
+     <element name="restFee" type="xsd:float"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="accountDetailInfoColl" nillable="true" type="impl:ArrayOf_tns1_AccountDetailInfoVO"/>
+     <element name="cityCode" nillable="true" type="xsd:string"/>
+     <element name="queryLevel" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProductConsumeParamVO">
+    <sequence>
+     <element name="cityCode" nillable="true" type="soapenc:string"/>
+     <element name="feeDate" nillable="true" type="soapenc:string"/>
+     <element name="serviceId" nillable="true" type="soapenc:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="userId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="BillWebServiceInVO">
+    <sequence>
+     <element name="detailBillListVO" nillable="true" type="tns1:DetailBillListVO"/>
+     <element name="errorDesc" nillable="true" type="xsd:string"/>
+     <element name="eventType" nillable="true" type="xsd:string"/>
+     <element name="leftFeeVO" nillable="true" type="tns1:LeftFeeVO"/>
+     <element name="moduleName" nillable="true" type="xsd:string"/>
+     <element name="sucess" type="xsd:boolean"/>
+     <element name="cityCode" nillable="true" type="xsd:string"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="applyEvent" nillable="true" type="soapenc:string"/>
+     <element name="bankFlowNumber" nillable="true" type="soapenc:string"/>
+     <element name="bankId" nillable="true" type="soapenc:string"/>
+     <element name="end" type="xsd:int"/>
+     <element name="ifContinue" type="xsd:int"/>
+     <element name="notifyDate" nillable="true" type="soapenc:string"/>
+     <element name="payfee" type="xsd:double"/>
+     <element name="productConsumeParamVO" nillable="true" type="tns1:ProductConsumeParamVO"/>
+     <element name="start" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="BillQueryVO">
+    <sequence>
+     <element name="accountId" type="xsd:long"/>
+     <element name="billFee" nillable="true" type="xsd:string"/>
+     <element name="cityCode" nillable="true" type="xsd:string"/>
+     <element name="customerId" type="xsd:long"/>
+     <element name="feeDate" nillable="true" type="xsd:string"/>
+     <element name="feeDateDesc" nillable="true" type="xsd:string"/>
+     <element name="feeKindDesc" nillable="true" type="xsd:string"/>
+     <element name="flowNumber" nillable="true" type="xsd:string"/>
+     <element name="osCode" nillable="true" type="xsd:string"/>
+     <element name="osMessgae" nillable="true" type="xsd:string"/>
+     <element name="payDate" nillable="true" type="xsd:string"/>
+     <element name="payStatus" nillable="true" type="xsd:string"/>
+     <element name="queryKind" type="xsd:int"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="totalFee" nillable="true" type="xsd:string"/>
+     <element name="useId" type="xsd:long"/>
+     <element name="accountName" nillable="true" type="soapenc:string"/>
+     <element name="fee" type="xsd:float"/>
+     <element name="feeName" nillable="true" type="soapenc:string"/>
+     <element name="operate" nillable="true" type="soapenc:string"/>
+     <element name="overdueFee" type="xsd:float"/>
+     <element name="payFee" type="xsd:float"/>
+     <element name="payWay" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Cdma1XDetailVO">
+    <sequence>
+     <element name="baseFee" type="xsd:double"/>
+     <element name="beginCallDate" nillable="true" type="xsd:string"/>
+     <element name="cdrSource" nillable="true" type="xsd:string"/>
+     <element name="counterCode" nillable="true" type="xsd:string"/>
+     <element name="dischargeFee" type="xsd:double"/>
+     <element name="duration" type="xsd:long"/>
+     <element name="endCallDate" nillable="true" type="xsd:string"/>
+     <element name="favourFee" type="xsd:double"/>
+     <element name="feeKind" nillable="true" type="xsd:string"/>
+     <element name="feeName" nillable="true" type="xsd:string"/>
+     <element name="inBytes" type="xsd:long"/>
+     <element name="indbDate" nillable="true" type="xsd:string"/>
+     <element name="otherFee" type="xsd:double"/>
+     <element name="outBytes" type="xsd:long"/>
+     <element name="roamType" nillable="true" type="xsd:string"/>
+     <element name="spName" nillable="true" type="xsd:string"/>
+     <element name="spsrvname" nillable="true" type="xsd:string"/>
+     <element name="srvName" nillable="true" type="xsd:string"/>
+     <element name="total" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="CurrentMonthFeeVO">
+    <sequence>
+     <element name="accountId" type="xsd:long"/>
+     <element name="balanceFee" nillable="true" type="xsd:string"/>
+     <element name="billFee" nillable="true" type="xsd:string"/>
+     <element name="billMaxMonth" nillable="true" type="xsd:string"/>
+     <element name="billMinMonth" nillable="true" type="xsd:string"/>
+     <element name="cityCode" nillable="true" type="xsd:string"/>
+     <element name="creditFee" nillable="true" type="xsd:string"/>
+     <element name="currNoFavour" nillable="true" type="xsd:string"/>
+     <element name="currTotalFee" nillable="true" type="xsd:string"/>
+     <element name="customerId" type="xsd:long"/>
+     <element name="feeDate" nillable="true" type="xsd:string"/>
+     <element name="feeName" nillable="true" type="xsd:string"/>
+     <element name="feeValue" nillable="true" type="xsd:string"/>
+     <element name="leftFee" nillable="true" type="xsd:string"/>
+     <element name="osCode" type="xsd:int"/>
+     <element name="osMessgae" nillable="true" type="xsd:string"/>
+     <element name="overdueFee" nillable="true" type="xsd:string"/>
+     <element name="preMonthNum" nillable="true" type="xsd:string"/>
+     <element name="queryKind" type="xsd:int"/>
+     <element name="restFee" nillable="true" type="xsd:string"/>
+     <element name="resultStr" nillable="true" type="xsd:string"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="totalFee" nillable="true" type="xsd:string"/>
+     <element name="useId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="DataDetailQueryVO">
+    <sequence>
+     <element name="areaCode" nillable="true" type="xsd:string"/>
+     <element name="baseFee" nillable="true" type="xsd:string"/>
+     <element name="beginCallDate" nillable="true" type="xsd:string"/>
+     <element name="beginCallTime" nillable="true" type="xsd:string"/>
+     <element name="beginDate" nillable="true" type="xsd:string"/>
+     <element name="duration" nillable="true" type="xsd:string"/>
+     <element name="endDate" nillable="true" type="xsd:string"/>
+     <element name="favourFee" nillable="true" type="xsd:string"/>
+     <element name="feeType" nillable="true" type="xsd:string"/>
+     <element name="inBytes" nillable="true" type="xsd:string"/>
+     <element name="osCode" type="xsd:int"/>
+     <element name="osMessgae" nillable="true" type="xsd:string"/>
+     <element name="outBytes" nillable="true" type="xsd:string"/>
+     <element name="resultStr" nillable="true" type="xsd:string"/>
+     <element name="roamFlag" nillable="true" type="xsd:string"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="serviceName" nillable="true" type="xsd:string"/>
+     <element name="totalFee" nillable="true" type="xsd:string"/>
+     <element name="feeName" nillable="true" type="soapenc:string"/>
+     <element name="serviceTypeName" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DetaileVoiceVO">
+    <sequence>
+     <element name="baseFee" type="xsd:double"/>
+     <element name="callDate" nillable="true" type="xsd:string"/>
+     <element name="callType" nillable="true" type="xsd:string"/>
+     <element name="cellId" nillable="true" type="xsd:string"/>
+     <element name="cityName" nillable="true" type="xsd:string"/>
+     <element name="counterAreaCode" nillable="true" type="xsd:string"/>
+     <element name="counterNumber" nillable="true" type="xsd:string"/>
+     <element name="duration" type="xsd:int"/>
+     <element name="favour" type="xsd:double"/>
+     <element name="feeName" nillable="true" type="xsd:string"/>
+     <element name="indbDate" nillable="true" type="xsd:string"/>
+     <element name="otherFee" type="xsd:double"/>
+     <element name="queryMonth" nillable="true" type="xsd:string"/>
+     <element name="roamType" nillable="true" type="xsd:string"/>
+     <element name="tollAdd" type="xsd:double"/>
+     <element name="tollFee" type="xsd:double"/>
+     <element name="tollType" nillable="true" type="xsd:string"/>
+     <element name="total" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="IncrementDetailQueryVO">
+    <sequence>
+     <element name="baseFee" nillable="true" type="xsd:string"/>
+     <element name="beginDate" nillable="true" type="xsd:string"/>
+     <element name="callType" nillable="true" type="xsd:string"/>
+     <element name="endDate" nillable="true" type="xsd:string"/>
+     <element name="favourFee" nillable="true" type="xsd:string"/>
+     <element name="infoFee" nillable="true" type="xsd:string"/>
+     <element name="osCode" type="xsd:int"/>
+     <element name="osMessgae" nillable="true" type="xsd:string"/>
+     <element name="payWay" nillable="true" type="xsd:string"/>
+     <element name="resultStr" nillable="true" type="xsd:string"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="spCode" nillable="true" type="xsd:string"/>
+     <element name="spName" nillable="true" type="xsd:string"/>
+     <element name="startDate" nillable="true" type="xsd:string"/>
+     <element name="startTime" nillable="true" type="xsd:string"/>
+     <element name="totalFee" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PayFeeHisVO">
+    <sequence>
+     <element name="BUNDLE_ID" type="xsd:long"/>
+     <element name="access_level" type="xsd:long"/>
+     <element name="accountFeeId" type="xsd:long"/>
+     <element name="accountFeeKind" nillable="true" type="xsd:string"/>
+     <element name="accountFeeValueStr" nillable="true" type="xsd:string"/>
+     <element name="account_id" type="xsd:long"/>
+     <element name="advance_operate_date" nillable="true" type="xsd:string"/>
+     <element name="advance_operate_id" nillable="true" type="xsd:string"/>
+     <element name="apply_start_date" nillable="true" type="xsd:string"/>
+     <element name="bankName" nillable="true" type="xsd:string"/>
+     <element name="batch_id" type="xsd:int"/>
+     <element name="batch_status" type="xsd:int"/>
+     <element name="city_code" nillable="true" type="xsd:string"/>
+     <element name="city_name" nillable="true" type="xsd:string"/>
+     <element name="confirm_operate_date" nillable="true" type="xsd:string"/>
+     <element name="confirm_operate_id" nillable="true" type="xsd:string"/>
+     <element name="contract_credit" type="xsd:long"/>
+     <element name="contract_serial" nillable="true" type="xsd:string"/>
+     <element name="credit_info" nillable="true" type="xsd:string"/>
+     <element name="credit_solution" type="xsd:long"/>
+     <element name="customer_id" type="xsd:long"/>
+     <element name="fee" type="xsd:float"/>
+     <element name="fee_date" nillable="true" type="xsd:string"/>
+     <element name="fee_name" nillable="true" type="xsd:string"/>
+     <element name="first_name" nillable="true" type="xsd:string"/>
+     <element name="flow_number" type="xsd:long"/>
+     <element name="idcard_type" nillable="true" type="xsd:string"/>
+     <element name="identity_code" nillable="true" type="xsd:string"/>
+     <element name="identity_kind" type="xsd:int"/>
+     <element name="if_valid" type="xsd:int"/>
+     <element name="last_left" type="xsd:float"/>
+     <element name="leftFee" type="xsd:float"/>
+     <element name="left_fee" type="xsd:float"/>
+     <element name="no_pay_number" type="xsd:long"/>
+     <element name="overdue_fee" type="xsd:float"/>
+     <element name="payKindName" nillable="true" type="xsd:string"/>
+     <element name="payTime" nillable="true" type="xsd:string"/>
+     <element name="payWayName" nillable="true" type="xsd:string"/>
+     <element name="pay_fee" type="xsd:float"/>
+     <element name="pay_kind" nillable="true" type="xsd:string"/>
+     <element name="pay_kind_code" type="xsd:int"/>
+     <element name="prepaid_fee" type="xsd:float"/>
+     <element name="service_favour_id" type="xsd:long"/>
+     <element name="service_favour_name" nillable="true" type="xsd:string"/>
+     <element name="service_id" nillable="true" type="xsd:string"/>
+     <element name="service_kind" type="xsd:int"/>
+     <element name="service_name" nillable="true" type="xsd:string"/>
+     <element name="service_status" nillable="true" type="xsd:string"/>
+     <element name="serving_status" type="xsd:int"/>
+     <element name="sum_fee" type="xsd:float"/>
+     <element name="total_arrearage" type="xsd:float"/>
+     <element name="user_id" type="xsd:long"/>
+     <element name="user_kind" type="xsd:int"/>
+     <element name="user_name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PaymentBankQueryVO">
+    <sequence>
+     <element name="billDate" nillable="true" type="soapenc:string"/>
+     <element name="binkId" nillable="true" type="soapenc:string"/>
+     <element name="cityCode" nillable="true" type="soapenc:string"/>
+     <element name="ifIntelligent" type="xsd:int"/>
+     <element name="invoceNo" nillable="true" type="soapenc:string"/>
+     <element name="operateDate" nillable="true" type="soapenc:string"/>
+     <element name="operateId" nillable="true" type="soapenc:string"/>
+     <element name="operator" nillable="true" type="soapenc:string"/>
+     <element name="serviceId" nillable="true" type="soapenc:string"/>
+     <element name="serviceKind" nillable="true" type="soapenc:string"/>
+     <element name="settleFlag" type="xsd:int"/>
+     <element name="status" type="xsd:int"/>
+     <element name="traceNo" nillable="true" type="soapenc:string"/>
+     <element name="transDate" nillable="true" type="soapenc:string"/>
+     <element name="transFee" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="ShortMessageDetailVO">
+    <sequence>
+     <element name="beginDate" nillable="true" type="xsd:string"/>
+     <element name="callPhone" nillable="true" type="xsd:string"/>
+     <element name="callType" nillable="true" type="xsd:string"/>
+     <element name="favourFee" type="xsd:double"/>
+     <element name="favourInfoFee" type="xsd:double"/>
+     <element name="fee" type="xsd:double"/>
+     <element name="feeKind" nillable="true" type="xsd:string"/>
+     <element name="inCode" nillable="true" type="xsd:string"/>
+     <element name="indbDate" nillable="true" type="xsd:string"/>
+     <element name="infoFee" type="xsd:double"/>
+     <element name="jobCode" nillable="true" type="xsd:string"/>
+     <element name="kind" nillable="true" type="xsd:string"/>
+     <element name="monthFee" type="xsd:double"/>
+     <element name="queryMonth" nillable="true" type="xsd:string"/>
+     <element name="spName" nillable="true" type="xsd:string"/>
+     <element name="total" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="SpFeeQueryVO">
+    <sequence>
+     <element name="cityCode" nillable="true" type="xsd:string"/>
+     <element name="feeDate" nillable="true" type="xsd:string"/>
+     <element name="feeName" nillable="true" type="xsd:string"/>
+     <element name="feeValue" nillable="true" type="xsd:string"/>
+     <element name="ifDouble" type="xsd:int"/>
+     <element name="osCode" type="xsd:int"/>
+     <element name="osMessgae" nillable="true" type="xsd:string"/>
+     <element name="queryKind" type="xsd:int"/>
+     <element name="resultStr" nillable="true" type="xsd:string"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="useId" type="xsd:long"/>
+     <element name="productName" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="TransferByMonthInfoVO">
+    <sequence>
+     <element name="account_fee_id" type="xsd:int"/>
+     <element name="account_fee_kind" type="xsd:int"/>
+     <element name="account_fee_name" nillable="true" type="soapenc:string"/>
+     <element name="account_id" type="xsd:long"/>
+     <element name="city_code" nillable="true" type="soapenc:string"/>
+     <element name="credit_fee" type="xsd:float"/>
+     <element name="curr_write_off" type="xsd:float"/>
+     <element name="device_no" nillable="true" type="soapenc:string"/>
+     <element name="flow_number" type="xsd:long"/>
+     <element name="invalid_date" nillable="true" type="soapenc:string"/>
+     <element name="left_fee" type="xsd:float"/>
+     <element name="pay_rate" type="xsd:int"/>
+     <element name="pay_rate_base" type="xsd:int"/>
+     <element name="region_code" nillable="true" type="soapenc:string"/>
+     <element name="service_kind" type="xsd:int"/>
+     <element name="start_date" nillable="true" type="soapenc:string"/>
+     <element name="status" nillable="true" type="soapenc:string"/>
+     <element name="trans_id" type="xsd:int"/>
+     <element name="trans_level" nillable="true" type="soapenc:string"/>
+     <element name="trans_name" nillable="true" type="soapenc:string"/>
+     <element name="trans_ym" nillable="true" type="soapenc:string"/>
+     <element name="transfer_fee" nillable="true" type="soapenc:string"/>
+     <element name="unit_fee" type="xsd:float"/>
+     <element name="user_id" type="xsd:long"/>
+     <element name="vari_id" type="xsd:int"/>
+     <element name="write_off" type="xsd:float"/>
+    </sequence>
+   </complexType>
+   <complexType name="AccountNode">
+    <sequence>
+     <element name="billName" nillable="true" type="soapenc:string"/>
+     <element name="billValue" nillable="true" type="soapenc:string"/>
+     <element name="childrenList" nillable="true" type="impl:ArrayOf_tns1_AccountNode"/>
+     <element name="level" type="xsd:int"/>
+     <element name="parentAccountNode" nillable="true" type="tns1:AccountNode"/>
+    </sequence>
+   </complexType>
+   <complexType name="AccountTree">
+    <sequence>
+     <element name="accountInfoArray" nillable="true" type="impl:ArrayOf_tns1_AccountInfoVO"/>
+     <element name="pointInfo" nillable="true" type="soapenc:string"/>
+     <element name="relationServiceIdStr" nillable="true" type="soapenc:string"/>
+     <element name="rootAccountNode" nillable="true" type="tns1:AccountNode"/>
+     <element name="totalFee" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProductConsumeVO">
+    <sequence>
+     <element name="consumeNumber" nillable="true" type="soapenc:string"/>
+     <element name="extraInfo" nillable="true" type="soapenc:string"/>
+     <element name="favourName" nillable="true" type="soapenc:string"/>
+     <element name="freeNumber" nillable="true" type="soapenc:string"/>
+     <element name="productName" nillable="true" type="soapenc:string"/>
+     <element name="remainingNumber" nillable="true" type="soapenc:string"/>
+     <element name="serviceId" nillable="true" type="soapenc:string"/>
+     <element name="unit" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProductUseExtraInfoVO">
+    <sequence>
+     <element name="extraInfo" nillable="true" type="soapenc:string"/>
+     <element name="unit" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProudctUseInfoVO">
+    <sequence>
+     <element name="evdoFlag" type="xsd:boolean"/>
+     <element name="productConsumeArray" nillable="true" type="impl:ArrayOf_tns1_ProductConsumeVO"/>
+     <element name="productUseExtraInfoArray" nillable="true" type="impl:ArrayOf_tns1_ProductUseExtraInfoVO"/>
+     <element name="serviceId" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="BillWebServiceOutVO">
+    <sequence>
+     <element name="billQueryVO" nillable="true" type="impl:ArrayOf_tns1_BillQueryVO"/>
+     <element name="cdma1XDetailVO" nillable="true" type="impl:ArrayOf_tns1_Cdma1XDetailVO"/>
+     <element name="cityCode" nillable="true" type="xsd:string"/>
+     <element name="currentMonthFeeVO" nillable="true" type="tns1:CurrentMonthFeeVO"/>
+     <element name="dataDetailQueryVO" nillable="true" type="impl:ArrayOf_tns1_DataDetailQueryVO"/>
+     <element name="detaileVoiceVO" nillable="true" type="impl:ArrayOf_tns1_DetaileVoiceVO"/>
+     <element name="errorDesc" nillable="true" type="xsd:string"/>
+     <element name="eventType" nillable="true" type="xsd:string"/>
+     <element name="flag" nillable="true" type="xsd:string"/>
+     <element name="incrementDetailQueryVO" nillable="true" type="impl:ArrayOf_tns1_IncrementDetailQueryVO"/>
+     <element name="leftFeeVO" nillable="true" type="tns1:LeftFeeVO"/>
+     <element name="onFlowNumber" nillable="true" type="xsd:string"/>
+     <element name="osMsg" nillable="true" type="xsd:string"/>
+     <element name="osPayDate" nillable="true" type="xsd:string"/>
+     <element name="osWriteOffDate" nillable="true" type="xsd:string"/>
+     <element name="payFeeHisVO" nillable="true" type="impl:ArrayOf_tns1_PayFeeHisVO"/>
+     <element name="paymentBankQueryVO" nillable="true" type="impl:ArrayOf_tns1_PaymentBankQueryVO"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="shortMessageDetailVO" nillable="true" type="impl:ArrayOf_tns1_ShortMessageDetailVO"/>
+     <element name="spFeeQueryVO" nillable="true" type="impl:ArrayOf_tns1_SpFeeQueryVO"/>
+     <element name="sucess" type="xsd:boolean"/>
+     <element name="count" type="xsd:int"/>
+     <element name="monthFeeDetailVO" nillable="true" type="impl:ArrayOf_tns2_MonthFeeDetailVO"/>
+     <element name="detailDataVO" nillable="true" type="impl:ArrayOf_tns1_DetailDataVO"/>
+     <element name="detailPstnVO" nillable="true" type="impl:ArrayOf_tns4_DetailPstnVO"/>
+     <element name="detaileCDMA1XVO" nillable="true" type="impl:ArrayOf_tns1_DetaileCDMA1XVO"/>
+     <element name="detaileNotesVO" nillable="true" type="impl:ArrayOf_tns1_DetaileNotesVO"/>
+     <element name="monthFeeQueryVO" nillable="true" type="tns2:MonthFeeQueryVO"/>
+     <element name="relationServiceId" nillable="true" type="xsd:string"/>
+     <element name="pointInfo" nillable="true" type="xsd:string"/>
+     <element name="accountInfoVO" nillable="true" type="tns5:AccountInfoVO"/>
+     <element name="detailVO" nillable="true" type="impl:ArrayOf_tns4_DetailVO"/>
+     <element name="transferByMonthInfoColl" nillable="true" type="impl:ArrayOf_tns1_TransferByMonthInfoVO"/>
+     <element name="accountInfoStr" nillable="true" type="soapenc:string"/>
+     <element name="accountTree" nillable="true" type="tns1:AccountTree"/>
+     <element name="customerId" nillable="true" type="soapenc:string"/>
+     <element name="customerName" nillable="true" type="soapenc:string"/>
+     <element name="monthAccountStr" nillable="true" type="soapenc:string"/>
+     <element name="osTotalFee" nillable="true" type="soapenc:string"/>
+     <element name="productConsumeVO" nillable="true" type="impl:ArrayOf_tns1_ProductConsumeVO"/>
+     <element name="proudctUseInfoArray" nillable="true" type="impl:ArrayOf_tns1_ProudctUseInfoVO"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:BillService">
+   <import namespace="http://detailquery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://data.common.tdframework.neusoft.com"/>
+   <import namespace="http://data.common.feemgt.webservice.crm.neusoft.com"/>
+   <import namespace="http://monthFeeQuery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://payfee.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_tns1_AccountDetailInfoVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:AccountDetailInfoVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_BillQueryVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:BillQueryVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_Cdma1XDetailVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:Cdma1XDetailVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_DataDetailQueryVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:DataDetailQueryVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_DetaileVoiceVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:DetaileVoiceVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_IncrementDetailQueryVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:IncrementDetailQueryVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_PayFeeHisVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:PayFeeHisVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_PaymentBankQueryVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:PaymentBankQueryVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_ShortMessageDetailVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:ShortMessageDetailVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_SpFeeQueryVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:SpFeeQueryVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns2_MonthFeeDetailVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns2:MonthFeeDetailVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_DetailDataVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns4:DetailDataVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns4_DetailPstnVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns4:DetailPstnVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_DetaileCDMA1XVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns4:DetaileCDMA1XVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_DetaileNotesVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns4:DetaileNotesVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_xsd_anyType">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:anyType[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns4_DetailVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns4:DetailVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_TransferByMonthInfoVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:TransferByMonthInfoVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_AccountInfoVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns5:AccountInfoVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_AccountNode">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:AccountNode[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_ProductConsumeVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:ProductConsumeVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_ProductUseExtraInfoVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:ProductUseExtraInfoVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_ProudctUseInfoVO">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:ProudctUseInfoVO[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://data.common.tdframework.neusoft.com">
+   <import namespace="http://detailquery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://data.common.feemgt.webservice.crm.neusoft.com"/>
+   <import namespace="http://monthFeeQuery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://payfee.data.feemgt.crm.neusoft.com"/>
+   <import namespace="urn:BillService"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType abstract="true" name="BaseVO">
+    <sequence/>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://monthFeeQuery.data.feemgt.crm.neusoft.com">
+   <import namespace="http://detailquery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://data.common.tdframework.neusoft.com"/>
+   <import namespace="http://data.common.feemgt.webservice.crm.neusoft.com"/>
+   <import namespace="http://payfee.data.feemgt.crm.neusoft.com"/>
+   <import namespace="urn:BillService"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="MonthFeeDetailVO">
+    <complexContent>
+     <extension base="tns3:BaseVO">
+      <sequence>
+       <element name="callTimes" type="xsd:long"/>
+       <element name="discharge" type="xsd:long"/>
+       <element name="fee1" nillable="true" type="soapenc:string"/>
+       <element name="fee11" nillable="true" type="soapenc:string"/>
+       <element name="fee12" nillable="true" type="soapenc:string"/>
+       <element name="fee13" nillable="true" type="soapenc:string"/>
+       <element name="fee14" nillable="true" type="soapenc:string"/>
+       <element name="fee2" nillable="true" type="soapenc:string"/>
+       <element name="fee3" nillable="true" type="soapenc:string"/>
+       <element name="fee4" nillable="true" type="soapenc:string"/>
+       <element name="feeDate" nillable="true" type="soapenc:string"/>
+       <element name="feeName" nillable="true" type="soapenc:string"/>
+       <element name="payUnit" type="xsd:long"/>
+       <element name="realUnit" type="xsd:long"/>
+       <element name="totalFee" nillable="true" type="soapenc:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="MonthFeeQueryVO">
+    <complexContent>
+     <extension base="tns3:BaseVO">
+      <sequence>
+       <element name="accountId" type="xsd:long"/>
+       <element name="balanceFee" nillable="true" type="xsd:string"/>
+       <element name="billFee" nillable="true" type="xsd:string"/>
+       <element name="billMaxMonth" nillable="true" type="xsd:string"/>
+       <element name="billMinMonth" nillable="true" type="xsd:string"/>
+       <element name="cityCode" nillable="true" type="xsd:string"/>
+       <element name="creditFee" nillable="true" type="xsd:string"/>
+       <element name="currNoFavour" nillable="true" type="xsd:string"/>
+       <element name="currTotalFee" nillable="true" type="xsd:string"/>
+       <element name="customerId" type="xsd:long"/>
+       <element name="dataiList" nillable="true" type="impl:ArrayOf_xsd_anyType"/>
+       <element name="feeDate" nillable="true" type="xsd:string"/>
+       <element name="feeName" nillable="true" type="xsd:string"/>
+       <element name="feeValue" nillable="true" type="xsd:string"/>
+       <element name="leftFee" nillable="true" type="xsd:string"/>
+       <element name="osCode" type="xsd:int"/>
+       <element name="osMessgae" nillable="true" type="xsd:string"/>
+       <element name="overdueFee" nillable="true" type="xsd:string"/>
+       <element name="preMonthNum" nillable="true" type="xsd:string"/>
+       <element name="queryKind" type="xsd:int"/>
+       <element name="restFee" nillable="true" type="xsd:string"/>
+       <element name="resultStr" nillable="true" type="xsd:string"/>
+       <element name="serviceId" nillable="true" type="xsd:string"/>
+       <element name="serviceKind" type="xsd:int"/>
+       <element name="totalFee" nillable="true" type="xsd:string"/>
+       <element name="useId" type="xsd:long"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.apache.org/xml-soap">
+   <import namespace="http://detailquery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://data.common.tdframework.neusoft.com"/>
+   <import namespace="http://data.common.feemgt.webservice.crm.neusoft.com"/>
+   <import namespace="http://monthFeeQuery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://payfee.data.feemgt.crm.neusoft.com"/>
+   <import namespace="urn:BillService"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="mapItem">
+    <sequence>
+     <element name="key" nillable="true" type="xsd:anyType"/>
+     <element name="value" nillable="true" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="Map">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="apachesoap:mapItem"/>
+    </sequence>
+   </complexType>
+   <complexType name="Vector">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://detailquery.data.feemgt.crm.neusoft.com">
+   <import namespace="http://data.common.tdframework.neusoft.com"/>
+   <import namespace="http://data.common.feemgt.webservice.crm.neusoft.com"/>
+   <import namespace="http://monthFeeQuery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://payfee.data.feemgt.crm.neusoft.com"/>
+   <import namespace="urn:BillService"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="DetailDataVO">
+    <sequence>
+     <element name="billTotal" type="xsd:float"/>
+     <element name="callDate" nillable="true" type="xsd:string"/>
+     <element name="calledNum" nillable="true" type="xsd:string"/>
+     <element name="callingNum" nillable="true" type="xsd:string"/>
+     <element name="duration" type="xsd:double"/>
+     <element name="endDate" nillable="true" type="xsd:string"/>
+     <element name="exportMap" nillable="true" type="apachesoap:Map"/>
+     <element name="favourTotal" type="xsd:float"/>
+     <element name="feeDate" nillable="true" type="xsd:string"/>
+     <element name="feeName" nillable="true" type="xsd:string"/>
+     <element name="inBytes" type="xsd:double"/>
+     <element name="outBytes" type="xsd:double"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="totalFee" type="xsd:float"/>
+    </sequence>
+   </complexType>
+   <complexType name="DetailPstnVO">
+    <sequence>
+     <element name="billTotal" type="xsd:float"/>
+     <element name="callDate" nillable="true" type="xsd:string"/>
+     <element name="callType" nillable="true" type="xsd:string"/>
+     <element name="callingNumber" nillable="true" type="xsd:string"/>
+     <element name="counterNumber" nillable="true" type="xsd:string"/>
+     <element name="duration" type="xsd:long"/>
+     <element name="exportMap" nillable="true" type="apachesoap:Map"/>
+     <element name="favourTotal" type="xsd:float"/>
+     <element name="feeDate" nillable="true" type="xsd:string"/>
+     <element name="feeName" nillable="true" type="xsd:string"/>
+     <element name="serviceId" nillable="true" type="xsd:string"/>
+     <element name="tollType" nillable="true" type="xsd:string"/>
+     <element name="totalFee" type="xsd:float"/>
+    </sequence>
+   </complexType>
+   <complexType name="DetaileCDMA1XVO">
+    <sequence>
+     <element name="baseFavour" nillable="true" type="soapenc:string"/>
+     <element name="baseFee" type="xsd:double"/>
+     <element name="beginCallDate" nillable="true" type="soapenc:string"/>
+     <element name="cdrSource" nillable="true" type="soapenc:string"/>
+     <element name="cellId" nillable="true" type="soapenc:string"/>
+     <element name="counterCode" nillable="true" type="soapenc:string"/>
+     <element name="dischargeFavour" nillable="true" type="soapenc:string"/>
+     <element name="dischargeFee" type="xsd:double"/>
+     <element name="duration" type="xsd:long"/>
+     <element name="endCallDate" nillable="true" type="soapenc:string"/>
+     <element maxOccurs="unbounded" name="exportMap" nillable="true" type="apachesoap:Map"/>
+     <element name="favourFee" type="xsd:double"/>
+     <element name="feeKind" nillable="true" type="soapenc:string"/>
+     <element name="feeName" nillable="true" type="soapenc:string"/>
+     <element name="inBytes" type="xsd:long"/>
+     <element name="indbDate" nillable="true" type="soapenc:string"/>
+     <element name="ip" nillable="true" type="soapenc:string"/>
+     <element name="otherFee" type="xsd:double"/>
+     <element name="outBytes" type="xsd:long"/>
+     <element name="productId" nillable="true" type="soapenc:string"/>
+     <element name="productName" nillable="true" type="soapenc:string"/>
+     <element name="roamBureau" nillable="true" type="soapenc:string"/>
+     <element name="roamType" nillable="true" type="soapenc:string"/>
+     <element name="serverPort" nillable="true" type="soapenc:string"/>
+     <element name="serviceClass" nillable="true" type="soapenc:string"/>
+     <element name="spName" nillable="true" type="soapenc:string"/>
+     <element name="spid" nillable="true" type="soapenc:string"/>
+     <element name="spsrvid" nillable="true" type="soapenc:string"/>
+     <element name="spsrvname" nillable="true" type="soapenc:string"/>
+     <element name="srvName" nillable="true" type="soapenc:string"/>
+     <element name="total" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="DetaileNotesVO">
+    <sequence>
+     <element name="baseFavour" nillable="true" type="soapenc:string"/>
+     <element name="beginDate" nillable="true" type="soapenc:string"/>
+     <element name="callPhone" nillable="true" type="soapenc:string"/>
+     <element name="callType" nillable="true" type="soapenc:string"/>
+     <element name="exportMap" nillable="true" type="apachesoap:Map"/>
+     <element name="favourFee" type="xsd:double"/>
+     <element name="favourInfoFee" type="xsd:double"/>
+     <element name="favourMonthFee" type="xsd:double"/>
+     <element name="fee" type="xsd:double"/>
+     <element name="feeKind" nillable="true" type="soapenc:string"/>
+     <element name="inCode" nillable="true" type="soapenc:string"/>
+     <element name="indbDate" nillable="true" type="soapenc:string"/>
+     <element name="infoFavour" nillable="true" type="soapenc:string"/>
+     <element name="infoFee" type="xsd:double"/>
+     <element name="jobCode" nillable="true" type="soapenc:string"/>
+     <element name="kind" nillable="true" type="soapenc:string"/>
+     <element name="monthFee" type="xsd:double"/>
+     <element name="productName" nillable="true" type="soapenc:string"/>
+     <element name="queryMonth" nillable="true" type="soapenc:string"/>
+     <element name="spCode" nillable="true" type="soapenc:string"/>
+     <element name="spName" nillable="true" type="soapenc:string"/>
+     <element name="total" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="DetailVO">
+    <sequence>
+     <element name="FParam0" type="xsd:float"/>
+     <element name="FParam1" type="xsd:float"/>
+     <element name="FParam2" type="xsd:float"/>
+     <element name="FParam3" type="xsd:float"/>
+     <element name="FParam4" type="xsd:float"/>
+     <element name="SParam0" nillable="true" type="soapenc:string"/>
+     <element name="SParam1" nillable="true" type="soapenc:string"/>
+     <element name="SParam10" nillable="true" type="soapenc:string"/>
+     <element name="SParam11" nillable="true" type="soapenc:string"/>
+     <element name="SParam12" nillable="true" type="soapenc:string"/>
+     <element name="SParam13" nillable="true" type="soapenc:string"/>
+     <element name="SParam14" nillable="true" type="soapenc:string"/>
+     <element name="SParam15" nillable="true" type="soapenc:string"/>
+     <element name="SParam2" nillable="true" type="soapenc:string"/>
+     <element name="SParam3" nillable="true" type="soapenc:string"/>
+     <element name="SParam4" nillable="true" type="soapenc:string"/>
+     <element name="SParam5" nillable="true" type="soapenc:string"/>
+     <element name="SParam6" nillable="true" type="soapenc:string"/>
+     <element name="SParam7" nillable="true" type="soapenc:string"/>
+     <element name="SParam8" nillable="true" type="soapenc:string"/>
+     <element name="SParam9" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://payfee.data.feemgt.crm.neusoft.com">
+   <import namespace="http://detailquery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="http://data.common.tdframework.neusoft.com"/>
+   <import namespace="http://data.common.feemgt.webservice.crm.neusoft.com"/>
+   <import namespace="http://monthFeeQuery.data.feemgt.crm.neusoft.com"/>
+   <import namespace="urn:BillService"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="AccountInfoVO">
+    <sequence>
+     <element name="accountId" type="xsd:long"/>
+     <element name="accountName" nillable="true" type="soapenc:string"/>
+     <element name="accountTel" nillable="true" type="soapenc:string"/>
+     <element name="billCust" nillable="true" type="soapenc:string"/>
+     <element name="billFee" type="xsd:float"/>
+     <element name="cityCode" nillable="true" type="soapenc:string"/>
+     <element name="cityName" nillable="true" type="soapenc:string"/>
+     <element name="creditControl" nillable="true" type="soapenc:string"/>
+     <element name="customerId" type="xsd:long"/>
+     <element name="identityCode" nillable="true" type="soapenc:string"/>
+     <element name="identityName" nillable="true" type="soapenc:string"/>
+     <element name="ifDefaultAcctId" nillable="true" type="soapenc:string"/>
+     <element name="invoiceCust" nillable="true" type="soapenc:string"/>
+     <element name="leftFee" type="xsd:float"/>
+     <element name="operFlag" type="xsd:int"/>
+     <element name="operMsg" nillable="true" type="soapenc:string"/>
+     <element name="payKind" nillable="true" type="soapenc:string"/>
+     <element name="serviceKind" type="xsd:int"/>
+     <element name="state" nillable="true" type="soapenc:string"/>
+     <element name="userId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="callServiceRequest">
+
+      <wsdl:part name="in0" type="tns1:BillWebServiceInVO">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="callServiceResponse">
+
+      <wsdl:part name="callServiceReturn" type="tns1:BillWebServiceOutVO">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="BillService">
+
+      <wsdl:operation name="callService" parameterOrder="in0">
+
+         <wsdl:input message="impl:callServiceRequest" name="callServiceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:callServiceResponse" name="callServiceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="BillServiceSoapBinding" type="impl:BillService">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="callService">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="callServiceRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:BillService" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="callServiceResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:BillService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="BillServiceService">
+
+      <wsdl:port binding="impl:BillServiceSoapBinding" name="BillService">
+
+         <wsdlsoap:address location="http://tempuri.org/LN/services/BillService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

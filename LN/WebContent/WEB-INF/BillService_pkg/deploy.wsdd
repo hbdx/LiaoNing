@@ -1,0 +1,443 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BillServiceService WSDL service -->
+
+  <service name="BillService" provider="java:RPC" style="rpc" use="encoded">
+      <parameter name="wsdlTargetNamespace" value="urn:BillService"/>
+      <parameter name="wsdlServiceElement" value="BillServiceService"/>
+      <parameter name="schemaUnqualified" value="http://monthFeeQuery.data.feemgt.crm.neusoft.com,http://xml.apache.org/xml-soap,http://payfee.data.feemgt.crm.neusoft.com,http://detailquery.data.feemgt.crm.neusoft.com,http://data.common.feemgt.webservice.crm.neusoft.com,urn:BillService,http://data.common.tdframework.neusoft.com"/>
+      <parameter name="wsdlServicePort" value="BillService"/>
+      <parameter name="className" value="BillService_pkg.BillServiceSoapBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="BillService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:ProductConsumeParamVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.ProductConsumeParamVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_Cdma1XDetailVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.Cdma1XDetailVO[]"
+        innerType="cmp-ns:Cdma1XDetailVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns4_DetailPstnVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetailPstnVO[]"
+        innerType="cmp-ns:DetailPstnVO" xmlns:cmp-ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://payfee.data.feemgt.crm.neusoft.com"
+        qname="ns:AccountInfoVO"
+        type="java:com.neusoft.crm.feemgt.data.payfee.AccountInfoVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        qname="ns:DetaileNotesVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetaileNotesVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_AccountDetailInfoVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.AccountDetailInfoVO[]"
+        innerType="cmp-ns:AccountDetailInfoVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_TransferByMonthInfoVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.TransferByMonthInfoVO[]"
+        innerType="cmp-ns:TransferByMonthInfoVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns4_DetailVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetailVO[]"
+        innerType="cmp-ns:DetailVO" xmlns:cmp-ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_ProudctUseInfoVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.ProudctUseInfoVO[]"
+        innerType="cmp-ns:ProudctUseInfoVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://xml.apache.org/xml-soap"
+        qname="ns:mapItem"
+        type="java:org.apache.xml.xml_soap.MapItem"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:ProductUseExtraInfoVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.ProductUseExtraInfoVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_DetaileNotesVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetaileNotesVO[]"
+        innerType="cmp-ns:DetaileNotesVO" xmlns:cmp-ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:ShortMessageDetailVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.ShortMessageDetailVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_DetaileCDMA1XVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetaileCDMA1XVO[]"
+        innerType="cmp-ns:DetaileCDMA1XVO" xmlns:cmp-ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_PaymentBankQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.PaymentBankQueryVO[]"
+        innerType="cmp-ns:PaymentBankQueryVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:SpFeeQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.SpFeeQueryVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:AccountTree"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.AccountTree"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.tdframework.neusoft.com"
+        qname="ns:BaseVO"
+        type="java:com.neusoft.tdframework.common.data.BaseVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:DetaileVoiceVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.DetaileVoiceVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_AccountNode"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.AccountNode[]"
+        innerType="cmp-ns:AccountNode" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        qname="ns:DetailDataVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetailDataVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:DataDetailQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.DataDetailQueryVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_DetaileVoiceVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.DetaileVoiceVO[]"
+        innerType="cmp-ns:DetaileVoiceVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:IncrementDetailQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.IncrementDetailQueryVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_DataDetailQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.DataDetailQueryVO[]"
+        innerType="cmp-ns:DataDetailQueryVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_BillQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.BillQueryVO[]"
+        innerType="cmp-ns:BillQueryVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:ProudctUseInfoVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.ProudctUseInfoVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:Cdma1XDetailVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.Cdma1XDetailVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:PaymentBankQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.PaymentBankQueryVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_DetailDataVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetailDataVO[]"
+        innerType="cmp-ns:DetailDataVO" xmlns:cmp-ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_SpFeeQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.SpFeeQueryVO[]"
+        innerType="cmp-ns:SpFeeQueryVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_ProductConsumeVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.ProductConsumeVO[]"
+        innerType="cmp-ns:ProductConsumeVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        qname="ns:DetaileCDMA1XVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetaileCDMA1XVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_ProductUseExtraInfoVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.ProductUseExtraInfoVO[]"
+        innerType="cmp-ns:ProductUseExtraInfoVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_AccountInfoVO"
+        type="java:com.neusoft.crm.feemgt.data.payfee.AccountInfoVO[]"
+        innerType="cmp-ns:AccountInfoVO" xmlns:cmp-ns="http://payfee.data.feemgt.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:AccountNode"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.AccountNode"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:AccountDetailInfoVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.AccountDetailInfoVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://monthFeeQuery.data.feemgt.crm.neusoft.com"
+        qname="ns:MonthFeeDetailVO"
+        type="java:com.neusoft.crm.feemgt.data.monthFeeQuery.MonthFeeDetailVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://monthFeeQuery.data.feemgt.crm.neusoft.com"
+        qname="ns:MonthFeeQueryVO"
+        type="java:com.neusoft.crm.feemgt.data.monthFeeQuery.MonthFeeQueryVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:DetailBillListVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.DetailBillListVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:TransferByMonthInfoVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.TransferByMonthInfoVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        qname="ns:DetailPstnVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetailPstnVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:LeftFeeVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.LeftFeeVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:BillQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.BillQueryVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_PayFeeHisVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.PayFeeHisVO[]"
+        innerType="cmp-ns:PayFeeHisVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://detailquery.data.feemgt.crm.neusoft.com"
+        qname="ns:DetailVO"
+        type="java:com.neusoft.crm.feemgt.data.detailquery.DetailVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns2_MonthFeeDetailVO"
+        type="java:com.neusoft.crm.feemgt.data.monthFeeQuery.MonthFeeDetailVO[]"
+        innerType="cmp-ns:MonthFeeDetailVO" xmlns:cmp-ns="http://monthFeeQuery.data.feemgt.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_ShortMessageDetailVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.ShortMessageDetailVO[]"
+        innerType="cmp-ns:ShortMessageDetailVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:ProductConsumeVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.ProductConsumeVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:PayFeeHisVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.PayFeeHisVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:BillWebServiceInVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.BillWebServiceInVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="urn:BillService"
+        qname="ns:ArrayOf_tns1_IncrementDetailQueryVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.IncrementDetailQueryVO[]"
+        innerType="cmp-ns:IncrementDetailQueryVO" xmlns:cmp-ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:CurrentMonthFeeVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.CurrentMonthFeeVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://data.common.feemgt.webservice.crm.neusoft.com"
+        qname="ns:BillWebServiceOutVO"
+        type="java:com.neusoft.crm.webservice.feemgt.common.data.BillWebServiceOutVO"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+  </service>
+</deployment>

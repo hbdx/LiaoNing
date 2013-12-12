@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<property name="Logger.Dir" value="log"/>
+	<!-- 控制台输出日志 -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{20} - %msg%n
+			</pattern>
+		</layout>
+	</appender>
+	<!-- 文件输出日志 (文件大小策略进行文件输出，超过指定大小对文件备份) -->
+	<appender name="LOCAL_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${Logger.Dir}/logback.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<FileNamePattern>log/logback.log.%i</FileNamePattern>
+			<MinIndex>1</MinIndex>
+			<MaxIndex>12</MaxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10MB</MaxFileSize>
+		</triggeringPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{20} - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	<root level="ALL">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="LOCAL_FILE" />
+	</root>
+</configuration>

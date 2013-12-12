@@ -1,0 +1,90 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BillQuery WSDL service -->
+
+  <service name="BillQuery" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://www.example.org/BillQuery/"/>
+      <parameter name="wsdlServiceElement" value="BillQuery"/>
+      <parameter name="schemaUnqualified" value="http://www.example.org/BillQuery/"/>
+      <parameter name="wsdlServicePort" value="BillQuery"/>
+      <parameter name="className" value="org.example.www.BillQuery.BillQuerySoapBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="BillQuery"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://www.example.org/BillQuery/"
+        qname="ns:PointInfo"
+        type="java:org.example.www.BillQuery.PointInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/BillQuery/"
+        qname="ns:>BillQueryRequest"
+        type="java:org.example.www.BillQuery.BillQueryRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/BillQuery/"
+        qname="ns:FeeInfo"
+        type="java:org.example.www.BillQuery.FeeInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/BillQuery/"
+        qname="ns:AcctFeeInfo"
+        type="java:org.example.www.BillQuery.AcctFeeInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/BillQuery/"
+        qname="ns:CoutesyReminderInfo"
+        type="java:org.example.www.BillQuery.CoutesyReminderInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/BillQuery/"
+        qname="ns:UseInfo"
+        type="java:org.example.www.BillQuery.UseInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/BillQuery/"
+        qname="ns:BillInfo"
+        type="java:org.example.www.BillQuery.BillInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://www.example.org/BillQuery/"
+        qname="ns:>BillQueryResponse"
+        type="java:org.example.www.BillQuery.BillQueryResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
